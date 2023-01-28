@@ -36,4 +36,11 @@ mqtt_server = 127.0.0.1
 mqtt_topic = pyroute53myip
 ```
 
-Version: 0.0.1
+## Usage
+
+```sh
+python3 -m pip install pyroute53myip
+python3 -m pyroute53myip
+```
+
+Version: 2023012900
