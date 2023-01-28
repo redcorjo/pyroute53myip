@@ -1,0 +1,37 @@
+
+# Generated using pyarchetype template
+# pip install pyarchetype
+# git clone https://github.com/redcorjo/pyarchetype.git
+[project]
+name = "pyroute53myip"
+version = "0.0.1"
+description = "This python tool pyroute53myip is useful to allow automate updating of a public DNS record hosted at Internet based in the public internet address from home. It is a quite typical scenario running at a domestic raspberry-pi tiny instance"
+authors = [
+  { name="redcorjo", email="jordipromotions@gmail.com" },
+]
+readme = "README.md"
+requires-python = ">=3.7"
+classifiers = [
+    "Programming Language :: Python :: 3",
+    "License :: OSI Approved :: MIT License",
+    "Operating System :: OS Independent",
+]
+
+dependencies = [
+"boto3",
+"dnspython",
+"paho-mqtt",
+"pyeasyencrypt",
+"APScheduler"
+]
+
+[project.urls]
+"Homepage" = "https://github.com/user/pyroute53myip"
+"Bug Tracker" = "https://github.com/user/pyroute53myip/issues"
+
+[build-system]
+requires = ["setuptools>=61.0"]
+build-backend = "setuptools.build_meta"
+
+[project.scripts]
+pyarchetype = "pyroute53myip.pyroute53myip:main"

@@ -1,0 +1,26 @@
+
+# Generated using pyarchetype template
+# pip install pyarchetype
+# git clone https://github.com/redcorjo/pyarchetype.git
+# Editors
+.vscode/
+.idea/
+
+# Vagrant
+.vagrant/
+
+# Mac/OSX
+.DS_Store
+
+# Windows
+Thumbs.db
+
+dist
+tmp
+.vscode
+.venv
+*.pyc
+src/pyroute53myip.egg-info
+.pypirc
+ src/pyroute53myip/pyroute53myip.ini
+ **/*.ini
