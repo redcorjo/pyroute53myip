@@ -40,7 +40,8 @@ mqtt_topic = pyroute53myip
 
 ```sh
 python3 -m pip install pyroute53myip
-python3 -m pyroute53myip
+export PYROUTE53MYIP_CONFIG=./pyroute53myip.ini
+python3 -m pyroute53myip.pyroute53myip:main
 ```
 
-Version: 2023012900
+Version: 2023012901
