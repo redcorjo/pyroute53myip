@@ -8,7 +8,11 @@ import paho.mqtt.client as paho
 import socket
 import base64
 import configparser
-from pyeasyencrypt.pyeasyencrypt import encrypt_string, decrypt_string
+try:
+    from pyeasyencrypt.pyeasyencrypt import encrypt_string, decrypt_string
+    use_base64 = False
+except:
+    use_base64 = True
 from apscheduler.schedulers.background import BackgroundScheduler
 from apscheduler.schedulers.background import BlockingScheduler
 import datetime
@@ -189,8 +193,10 @@ class Pyroute53myip():
     def encode_value(self, value):
         if value != None and not value.startswith("(ENC)"):
             master_key = socket.gethostname()
-            #my_value = base64.b64encode(value.encode()).decode()
-            my_value = encrypt_string(value, master_key)
+            if use_base64 == True:
+                my_value = base64.b64encode(value.encode()).decode()
+            else:
+                my_value = encrypt_string(value, master_key)
             encoded_string = f"(ENC){my_value}"
         else:
             encoedd_string = value
@@ -200,8 +206,10 @@ class Pyroute53myip():
         if value != None and value.startswith("(ENC)"):
             master_key = socket.gethostname()
             value = value.replace("(ENC)", "")
-            decoded_string = decrypt_string(value, master_key)
-            #decoded_string = base64.b64decode(value.encode()).decode()
+            if use_base64 == False:
+                decoded_string = decrypt_string(value, master_key)
+            else:
+                decoded_string = base64.b64decode(value.encode()).decode()
         else:
             decoded_string = value
         return decoded_string
@@ -230,7 +238,6 @@ def main():
     ZONEID = os.getenv("ZONEID")
     RECORDSET = os.getenv("RECORDSET")
     mytask = Pyroute53myip()
-    #my_public_ip = mytask.update_my_public_ip(ZONEID, RECORDSET, force_update=True)
     my_public_ip = mytask.update_my_public_ip(ZONEID, RECORDSET, force_update=True)
     mytask.schedule_daemon()
     logger.info("Done")
